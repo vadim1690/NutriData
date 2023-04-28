@@ -7,6 +7,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        NutriData.initHelper(this);
+        NutriData.initHelper();
     }
 }
