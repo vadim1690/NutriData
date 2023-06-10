@@ -23,7 +23,7 @@ public class ProductData {
     private Double carbohydrates;
     @SerializedName("imageUrl")
     private String imageUrl;
-    @SerializedName("isNatural")
+    @SerializedName("natural")
     private Boolean isNatural;
     @SerializedName("fiber")
     private Double fiber;

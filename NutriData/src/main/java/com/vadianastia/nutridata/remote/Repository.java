@@ -1,6 +1,5 @@
 package com.vadianastia.nutridata.remote;
 
-import com.vadianastia.nutridata.entities.NutriDataList;
 import com.vadianastia.nutridata.entities.ProductData;
 
 import java.util.List;
@@ -21,8 +20,28 @@ public class Repository {
         this.jsonApiNutriData = ApiService.getInstance().getJsonNutriData();
     }
 
-    public Call<NutriDataList> getAllNutriData() {
+    public Call<List<ProductData>> getAllNutriData() {
         return jsonApiNutriData.getAllNutriData();
     }
+
+    public Call<List<ProductData>> getAllNutriDataByName(String name) {
+        return jsonApiNutriData.getAllNutriDataByName(name);
+    }
+    public Call<List<ProductData>> getAllNutriDataByFoodGroup(String name) {
+        return jsonApiNutriData.getAllNutriDataByFoodGroup(name);
+    }
+
+    public Call<List<ProductData>> getAllNutriDataByVitamin(String name) {
+        return jsonApiNutriData.getAllNutriDataByVitamin(name);
+    }
+
+    public Call<List<ProductData>> getAllNaturalNutriData() {
+        return jsonApiNutriData.getAllNaturalNutriData();
+    }
+
+    public Call<List<ProductData>> getAllNotNaturalNutriData() {
+        return jsonApiNutriData.getAllNotNaturalNutriData();
+    }
+
 
 }
