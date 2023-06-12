@@ -1,6 +1,8 @@
 package com.vadianastia.nutridata.remote;
 
+import com.vadianastia.nutridata.entities.FoodGroup;
 import com.vadianastia.nutridata.entities.ProductData;
+import com.vadianastia.nutridata.entities.Vitamin;
 
 import java.util.List;
 
@@ -41,6 +43,22 @@ public class Repository {
 
     public Call<List<ProductData>> getAllNotNaturalNutriData() {
         return jsonApiNutriData.getAllNotNaturalNutriData();
+    }
+
+    public Call<List<Vitamin>> getAllVitamins() {
+        return jsonApiNutriData.getAllVitamins();
+    }
+
+    public Call<List<FoodGroup>> getAllFoodGroups() {
+        return jsonApiNutriData.getAllFoodGroups();
+    }
+
+    public Call<Double> getCaloriesForProduct(String name) {
+        return jsonApiNutriData.getCaloriesForProduct(name);
+    }
+
+    public Call<Double> getSugarForProduct(String name) {
+        return jsonApiNutriData.getSugarForProduct(name);
     }
 
 

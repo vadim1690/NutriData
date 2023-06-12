@@ -1,6 +1,8 @@
 package com.vadianastia.nutridata.remote;
 
+import com.vadianastia.nutridata.entities.FoodGroup;
 import com.vadianastia.nutridata.entities.ProductData;
+import com.vadianastia.nutridata.entities.Vitamin;
 
 import java.util.List;
 
@@ -25,4 +27,16 @@ public interface JsonApiNutriData {
 
     @GET("products/notNatural")
     Call<List<ProductData>>  getAllNotNaturalNutriData();
+
+    @GET("vitamins")
+    Call<List<Vitamin>>  getAllVitamins();
+
+    @GET("foodGroups")
+    Call<List<FoodGroup>>  getAllFoodGroups();
+
+    @GET("products/Calories/{name}")
+    Call<Double>  getCaloriesForProduct(@Path("name") String name);
+
+    @GET("products/Sugar/{name}")
+    Call<Double>  getSugarForProduct(@Path("name") String name);
 }

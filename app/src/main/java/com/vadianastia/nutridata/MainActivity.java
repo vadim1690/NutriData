@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private MaterialButton search_by_name_button;
     private MaterialButton search_by_vitamin_button;
     private MaterialButton search_by_food_group_button;
+    private MaterialButton search_by_not_natural_button;
+    private MaterialButton search_by_natural_button;
     private MaterialButton back_button;
     private MaterialButton full_list_button;
     private SearchView search_view;
@@ -52,15 +54,21 @@ public class MainActivity extends AppCompatActivity {
         full_list_button = findViewById(R.id.full_list_button);
         search_layout = findViewById(R.id.search_layout);
         search_view = findViewById(R.id.search_view);
+        search_by_natural_button = findViewById(R.id.search_by_natural_button);
+        search_by_not_natural_button = findViewById(R.id.search_by_not_natural_button);
 
         full_list_button.setOnClickListener(view -> fullList());
         search_by_name_button.setOnClickListener(view -> searchByName());
         search_by_vitamin_button.setOnClickListener(view -> searchByVitamin());
         search_by_food_group_button.setOnClickListener(view -> searchByFoodGroup());
+        search_by_not_natural_button.setOnClickListener(view -> searchByNatural(false));
+        search_by_natural_button.setOnClickListener(view -> searchByNatural(true));
         back_button.setOnClickListener(view -> setOnlyBackButtonLayout(false));
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                if (query == null || query.isEmpty())
+                    recyclerView.setAdapter(null);
                 return false;
             }
 
@@ -68,13 +76,32 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
                 if (newText != null && newText.length() > 1)
                     doSearch(newText);
-                else{
+                else {
                     recyclerView.setAdapter(null);
                 }
                 return false;
             }
         });
 
+    }
+
+    private void searchByNatural(boolean isNatural) {
+        setOnlyBackButtonLayout(true);
+        recyclerView.setAdapter(null);
+        progress_circular.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+        NutriData.getInstance().getByIsNatural(isNatural, new Callback_resultState<List<ProductData>>() {
+            @Override
+            public void onDataLoaded(List<ProductData> data) {
+                if (data != null && !data.isEmpty())
+                    setRecyclerView(data);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Log.d(Constants.LOG, "Error message: " + errorMessage);
+            }
+        });
     }
 
     private void searchByFoodGroup() {
@@ -90,10 +117,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doSearch(String query) {
-        setOnlyBackButtonLayout(true);
         progress_circular.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
-        switch (searchType){
+        switch (searchType) {
             case BY_NAME:
                 searchByNameInRemote(query);
                 break;
@@ -151,16 +177,27 @@ public class MainActivity extends AppCompatActivity {
 
     private void setOnlyBackButtonLayout(boolean isOnlyBack) {
         if (isOnlyBack) {
+            search_view.setQuery("", false);
+            recyclerView.setAdapter(null);
             list_layout.setVisibility(View.VISIBLE);
             full_list_button.setVisibility(View.GONE);
             search_by_name_button.setVisibility(View.GONE);
+            search_by_food_group_button.setVisibility(View.GONE);
+            search_by_vitamin_button.setVisibility(View.GONE);
+            search_by_not_natural_button.setVisibility(View.GONE);
+            search_by_natural_button.setVisibility(View.GONE);
+
             back_button.setVisibility(View.VISIBLE);
         } else {
             search_layout.setVisibility(View.GONE);
             list_layout.setVisibility(View.GONE);
             full_list_button.setVisibility(View.VISIBLE);
             search_by_name_button.setVisibility(View.VISIBLE);
-            back_button.setVisibility(View.VISIBLE);
+            search_by_food_group_button.setVisibility(View.VISIBLE);
+            search_by_vitamin_button.setVisibility(View.VISIBLE);
+            search_by_not_natural_button.setVisibility(View.VISIBLE);
+            search_by_natural_button.setVisibility(View.VISIBLE);
+            back_button.setVisibility(View.GONE);
         }
     }
 
@@ -191,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
     private void setRecyclerView(List<ProductData> data) {
         progress_circular.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
-        if (data == null || data.isEmpty()){
+        if (data == null || data.isEmpty()) {
             recyclerView.setAdapter(null);
             return;
         }

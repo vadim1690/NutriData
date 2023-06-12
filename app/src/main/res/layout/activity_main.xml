@@ -52,6 +52,24 @@
         android:gravity="center"
         android:text="Search by vitamin" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/search_by_natural_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="All natural" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/search_by_not_natural_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="All not natural" />
+
 
     <LinearLayout
         android:id="@+id/search_layout"
@@ -99,6 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:visibility="gone"
         android:text="Back" />
 
 
