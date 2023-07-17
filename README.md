@@ -9,7 +9,7 @@ with this library, you can easelly check the products that you wish to know thei
 Also you can chose and Adjust the search according to your need, dependent on your nutrition preferances, like if the product is natural or not, and vitanmins that is important to you, in your nutition.
 
 
-##implemented following use-cases:
+## Implemented following use-cases:
 * Get all nutri data
 * Search by name
 * Search by food group
@@ -18,7 +18,7 @@ Also you can chose and Adjust the search according to your need, dependent on yo
 * All not natural
 
 # Getting Started
-#Installation
+# Installation
   1. Add in settings.gradle file:
       dependencyResolutionManagement {
 
