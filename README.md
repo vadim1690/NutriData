@@ -1,4 +1,5 @@
-# NutriData
+
+# NutriData [![](https://jitpack.io/v/vadim1690/NutriData.svg)](https://jitpack.io/#vadim1690/NutriData)
 
 ## Nutrition data library for fast and easy use. 
 _Based on api we built._
