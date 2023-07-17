@@ -32,7 +32,7 @@ Also you can chose and Adjust the search according to your need, dependent on yo
       }
 ```
   2. In app build.gradle,
-     ```
+```
     dependencies {
     // ...
 	        implementation 'com.github.vadim1690:NutriData:1.0.0.1'
