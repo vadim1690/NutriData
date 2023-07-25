@@ -95,3 +95,7 @@ public class App extends Application {
             }
         });
 ```
+
+![All nutri data](https://raw.githubusercontent.com/vadim1690/NutriData/master/allNutri.jpg)
+![Search by name](https://github.com/vadim1690/NutriData/blob/master/nutriDetails.png?raw=true)
+![Search by food group](https://github.com/vadim1690/NutriData/blob/master/searchFoodGroup.png?raw=true)
