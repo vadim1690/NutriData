@@ -39,3 +39,59 @@ Also you can chose and Adjust the search according to your need, dependent on yo
 	        implementation 'com.github.vadim1690:NutriData:1.0.0.1'
     }
 ```
+  3. Initialize in you App class
+```
+public class App extends Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        NutriData.initHelper();
+    }
+}
+```
+# Main functions
+  1. Get all nutri data:
+```
+        NutriData.getInstance().getAllNutriData(new Callback_resultState<List<ProductData>>() {
+            @Override
+            public void onDataLoaded(List<ProductData> data) {
+                if (data != null && !data.isEmpty())
+                    setRecyclerView(data);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Log.d(Constants.LOG, "Error message: " + errorMessage);
+            }
+        });
+```
+  2. Search by name
+```
+        NutriData.getInstance().getNutriDataByProductName(query, new Callback_resultState<List<ProductData>>() {
+            @Override
+            public void onDataLoaded(List<ProductData> data) {
+                setRecyclerView(data);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Log.d(Constants.LOG, "Error message: " + errorMessage);
+            }
+        });
+```
+
+  3. Search by food group
+```
+        NutriData.getInstance().getNutriDataByFoodGroup(query, new Callback_resultState<List<ProductData>>() {
+            @Override
+            public void onDataLoaded(List<ProductData> data) {
+                setRecyclerView(data);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Log.d(Constants.LOG, "Error message: " + errorMessage);
+            }
+        });
+```
